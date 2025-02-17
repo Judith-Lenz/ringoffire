@@ -27,17 +27,18 @@ export class GameComponent implements OnInit {
 
   takeCard() {
     if (!this.pickCardAnimation) {
-      this.pickCardAnimation = true;
-      let takenCard = this.game.stack.pop();
+      // Prüft, ob gerade keine Animation läuft
+      this.pickCardAnimation = true; // Setzt die Animation auf 'aktiv'
+      let takenCard = this.game.stack.pop(); // Nimmt die oberste Karte aus dem Kartenstapel, also die letzte im Array
       if (takenCard !== undefined) {
-        this.currentCard = takenCard;
+        this.currentCard = takenCard; // Speichert die gezogene Karte in 'currentCard'
       }
 
       console.log(this.currentCard);
       console.log(this.game);
       setTimeout(() => {
-        this.game.playedCards.push(this.currentCard);
-        this.pickCardAnimation = false;
+        this.game.playedCards.push(this.currentCard); // Fügt die Karte in 'playedCards' hinzu
+        this.pickCardAnimation = false; // Nach 1 Sek Animation wieder deaktivieren
       }, 1000);
     }
   }
