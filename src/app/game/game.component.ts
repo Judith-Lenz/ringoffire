@@ -1,5 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { MatDialog } from '@angular/material/dialog';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-game',
@@ -14,7 +25,7 @@ export class GameComponent implements OnInit {
   // Im Code wird game erst in der Methode newGame() initialisiert, die erst in ngOnInit() aufgerufen wird.
   // TypeScript kann nicht sicherstellen, dass game immer einen Wert hat, bevor sie verwendet wird.
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.newGame();
@@ -41,5 +52,14 @@ export class GameComponent implements OnInit {
         this.pickCardAnimation = false; // Nach 1 Sek Animation wieder deaktivieren
       }, 1000);
     }
+  }
+
+  //kopiert von Material Design
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogAddPlayerComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
   }
 }
