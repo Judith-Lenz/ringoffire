@@ -1,7 +1,8 @@
 <app-player
   *ngFor="let player of game.players; let i = index"
   class="player-position"
-  [ngStyle]="{ 'top.px': 100 + i * 120 }"
+  [ngStyle]="{ 'top.px': 100 + i * 90 }"
+  [playerActive]="i == game.currentPlayer"
   [name]="player"
 ></app-player>
 <!-- erster Eintrag im Array ist bei 100, der nächste bei 200 und der nächste bei 300px top -->
@@ -41,6 +42,8 @@
     />
   </div>
 </div>
+
+<app-game-info class="pin-bottom"></app-game-info>
 
 <button mat-fab class="btn-add" (click)="openDialog()">
   <mat-icon>add</mat-icon>

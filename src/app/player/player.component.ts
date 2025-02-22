@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class PlayerComponent {
   @Input() name = '';
+  @Input() playerActive: boolean = false; //also standardmäßig ist ein Player NICHT aktiv.
   //das geben wir in die component mit rein.
   // Also dann als Variable im html verwendbar.
 }
