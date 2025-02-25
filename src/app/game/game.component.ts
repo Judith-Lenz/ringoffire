@@ -40,7 +40,9 @@ export class GameComponent implements OnInit {
       if (takenCard !== undefined) {
         this.currentCard = takenCard; // Speichert die gezogene Karte in 'currentCard'
       }
-
+      this.game.currentPlayer++;
+      this.game.currentPlayer =
+        this.game.currentPlayer % this.game.players.length;
       console.log(this.currentCard);
       console.log(this.game);
       setTimeout(() => {
@@ -55,8 +57,10 @@ export class GameComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe((name: string) => {
-      this.game.players.push(name);
-      console.log('The dialog was closed', name);
+      if (name && name.length > 0) {
+        this.game.players.push(name);
+        console.log('The dialog was closed', name);
+      }
     });
   }
 }
